@@ -1,4 +1,5 @@
 import React from 'react';
+import Course from './course.component.jsx'
 
 class CourseSales extends React.Component {
 
@@ -30,34 +31,6 @@ class CourseSales extends React.Component {
                     {courseList}
                     <p id="total">Total: <b>${this.state.total}</b></p>
                 </div>
-            </div>
-        );
-    }
-}
-
-class Course extends React.Component {
-
-    clicker() {
-        var active = !this.state.active;
-        this.setState({
-            active: active,
-        });
-
-        this.props.sumPriceHandle(active ? this.props.price : -this.props.price);
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            active: false
-        };
-    }
-
-    render() {
-        return (
-            <div>
-                <p className={this.state.active ? 'active' : ''} onClick={this.clicker.bind(this)}>{this.props.name} <b>${this.props.price}</b></p>
             </div>
         );
     }
