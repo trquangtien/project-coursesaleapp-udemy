@@ -28,7 +28,7 @@ class CourseSales extends React.Component {
                 <h1>You can buy courses:</h1>
                 <div id="courses">
                     {courseList}
-                    <p id="total">Total: <b>{this.state.total}</b></p>
+                    <p id="total">Total: <b>${this.state.total}</b></p>
                 </div>
             </div>
         );
