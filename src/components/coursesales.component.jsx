@@ -1,5 +1,6 @@
 import React from 'react';
-import Course from './course.component.jsx'
+import Course from './course.component.jsx';
+import CourseService from './../services/courseService.js';
 
 class CourseSales extends React.Component {
 
@@ -8,6 +9,12 @@ class CourseSales extends React.Component {
         this.state = {
             total: 0
         }
+    }
+
+    loadDataFromAPI() {
+        CourseService.getAllCourses().then(res => {
+            console.log(res.data);
+        });
     }
 
     sumPrice(price) {
@@ -31,6 +38,9 @@ class CourseSales extends React.Component {
                     {courseList}
                     <p id="total">Total: <b>${this.state.total}</b></p>
                 </div>
+
+                <br /><br />
+                <button onClick={this.loadDataFromAPI.bind(this)}>Test</button>
             </div>
         );
     }

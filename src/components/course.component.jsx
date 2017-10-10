@@ -2,6 +2,14 @@ import React from 'react';
 
 class Course extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            active: false
+        };
+    }
+
     clicker() {
         var active = !this.state.active;
         this.setState({
@@ -9,14 +17,6 @@ class Course extends React.Component {
         });
 
         this.props.sumPriceHandle(active ? this.props.price : -this.props.price);
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            active: false
-        };
     }
 
     render() {
