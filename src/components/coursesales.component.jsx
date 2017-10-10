@@ -7,13 +7,18 @@ class CourseSales extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            total: 0
+            total: 0,
+            arrCourses: []
         }
     }
 
-    loadDataFromAPI() {
+    componentDidMount() {
         CourseService.getAllCourses().then(res => {
-            console.log(res.data);
+            this.setState({
+                arrCourses: res.data
+            });
+        }).catch(function (err) {
+            console.log(err);
         });
     }
 
@@ -24,23 +29,23 @@ class CourseSales extends React.Component {
     }
 
     render() {
-        var courseList = this.props.items.map((item, i) => {
+        var courseList = this.state.arrCourses.map((item, i) => {
             return <Course name={item.name}
                 price={item.price}
                 key={i}
                 sumPriceHandle={this.sumPrice.bind(this)}
                 active={item.active} />
         });
+
+        var totalRender = this.state.total <= 0 ? 0 : parseFloat(this.state.total).toFixed(2);
+
         return (
             <div>
                 <h1>You can buy courses:</h1>
                 <div id="courses">
                     {courseList}
-                    <p id="total">Total: <b>${this.state.total}</b></p>
+                    <p id="total">Total: <b>${totalRender}</b></p>
                 </div>
-
-                <br /><br />
-                <button onClick={this.loadDataFromAPI.bind(this)}>Test</button>
             </div>
         );
     }
