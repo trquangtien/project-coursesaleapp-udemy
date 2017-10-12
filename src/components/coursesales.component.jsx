@@ -12,6 +12,20 @@ class CourseSales extends React.Component {
         }
     }
 
+    async testAsyncToGetAPI() {
+        var arrTest = [];
+
+        try {
+            var res = await new CourseService().getAllCoursesAsync();
+            arrTest = res.data;
+
+            console.log(arrTest);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     componentDidMount() {
         CourseService.getAllCourses().then(res => {
             this.setState({
@@ -46,6 +60,8 @@ class CourseSales extends React.Component {
                     {courseList}
                     <p id="total">Total: <b>${totalRender}</b></p>
                 </div>
+                <br /><br />
+                <button onClick={this.testAsyncToGetAPI.bind(this)}>Test Async</button>
             </div>
         );
     }
